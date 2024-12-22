@@ -1,0 +1,183 @@
+body{
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  }
+  .container{
+      flex: 1;
+  }
+  
+  .navbar{
+      height: 5rem;
+      background-color: white;
+  }
+  
+  .fa-compass{
+      color: #fe424d;
+      font-size: 2rem;
+  }
+  
+  .nav-link{
+      color:#222222 !important;
+  }
+  
+  /*footer */
+  .f-info-links a{
+      text-decoration: none;
+      color: #222222;
+  }
+  .f-info-links a:hover{
+      text-decoration: underline;
+  }
+  
+  .f-info-links, .f-info-socials, .f-info-brand{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  
+  .f-info-socials i{
+      font-size: 1.2rem;
+      margin-right: 1rem;
+  }
+  
+  
+  .f-info{
+      text-align: center;
+      height: 8rem;
+      background-color: #bebebe;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: space-evenly;
+  }
+  
+  /*cards */
+  .listing-card{
+      border: none !important;
+      margin-bottom: 2rem;
+  }
+  
+  .card-img-top{
+      border-radius: 1rem !important;
+      width: 100% !important;
+      object-fit: cover !important;
+  }
+  
+  .card-body{
+      padding: 0 !important;
+  }
+  
+  .card-text p{
+      font-weight: 400 !important;
+  }
+  
+  .card-text b {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+      font-weight: 600;
+    }
+  
+  .listing-link{
+      text-decoration: none;
+  }
+  
+  /*card effect */
+  .card-img-overlay{
+      opacity: 0;
+  }
+  .card-img-overlay:hover{
+      opacity: 0.2;
+      background-color: white;
+  }
+  /*new page*/
+  .add-btn{
+      background-color: #fe424d !important;
+      border: none !important;
+  }
+  
+  .edit-btn{
+      background-color: #fe424d !important;
+      border: none !important;
+  
+  }
+  
+  /*show page */
+  .show-image{
+      height: 30vh;
+  }
+  
+  .btns{
+      display: flex;
+  }
+  
+  .show-card{
+      padding-left: 0;
+      padding-right: 0;
+  }
+  
+  /*MAP*/
+  #map {
+      height: 400px;
+      width: 80vh;
+  
+   }
+  
+   @media (max-width: 767px){
+      .edit-btn{
+         width: 4rem !important;
+      }   
+     }
+  
+     @media (max-width: 600px) {
+      HTML,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+        offset: none;
+      }
+    
+      .container-fluid {
+        background-color: #ebebee;
+        color: white;
+        text-align: center;
+      }
+    
+      #show-body {
+        width: 180% !important;
+        margin-left: -130px;
+      }
+    
+      #comments {
+        width: 70% !important;
+      }
+    
+      #card-body {
+        width: 65% !important;
+      }
+    
+      #map {
+        width: 265px;
+        height: 350px;
+        border: 4px solid #ebebee;
+        border-style: groove;
+      }
+    
+      #filters {
+        display: flex;
+        overflow-x: scroll !important;
+        align-items: center;
+      }
+    
+      .tax-toggle {
+        display: grid !important;
+        margin-right: 30px;
+        height: 1rem;
+      }
+      .tax-toggle label {
+        font-size: 10px;
+        display: none;
+      }
+    }
