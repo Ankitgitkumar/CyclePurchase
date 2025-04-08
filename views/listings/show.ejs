@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+<!-- <% layout("/layouts/boilerplate") %>
 <script>
   const mapToken="<%=process.env.MAP_TOKEN %>";
   const listing=<%- JSON.stringify(listing)%>;
@@ -14,6 +14,7 @@
       class="card-img-top show-image"
       alt="listing_image"
     />
+    
     <div class="card-body">
       <p class="card-text">Owned by <i><%= listing.owner.username%></i></p>
 
@@ -21,7 +22,15 @@
       <p class="card-text">&#8377;<%= listing.price %></p>
       <p class="card-text"><%= listing.location %></p>
       <p class="card-text"><%= listing.country %></p>
+      
     </div>
+    <div class="card col-6 offset-3 show-card listing-card">
+      <img
+        src="<%= listing.qrCode.url %>"
+        class="card-img-top show-image"
+        alt="listing_image"
+      />
+      </div>
   </div>
 
   <br />
@@ -145,4 +154,115 @@
     <div id="map"></div>
   </div>
 </div>
+<script src="/js/map.js"></script> -->
+
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .qr{
+    width: 300px;
+    height: 300px;
+  }
+</style>
+<script>
+  const mapToken = "<%= process.env.MAP_TOKEN %>";
+  const listing = <%- JSON.stringify(listing) %>;
+</script>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h3><%= listing.title %></h3>
+  </div>
+
+  <div class="card col-8 offset-2 show-card listing-card mb-4">
+    <img
+      src="<%= listing.image.url %>"
+      class="card-img-top show-image"
+      alt="listing_image"
+    />
+    <div class="container d-flex">
+    <div class="card-body">
+      <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
+      <p class="card-text"><%= listing.description %></p>
+      <p class="card-text">&#8377;<%= listing.price %></p>
+      <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
+    </div>
+    <div class="qr">
+    <% if (listing.qrCode) { %>
+      <div class="qr-code-container align-items-center">
+         <img 
+          src="<%= listing.qrCode.url %>" 
+          class="card-img-bottom mt-2" 
+          alt="QR Code for this listing" 
+        /> 
+        <!-- <img src="<%= listing.qrCode.url %>" alt="QR Code" class="qr-image" /> -->
+      </div>
+    <% } %>
+  </div>
+</div>
+  </div>
+
+  
+  
+  <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
+  <div class="btns col-8 offset-2 d-flex justify-content-between mb-4">
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+
+    <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+      <button class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+  <% } %>
+
+  <div class="col-8 offset-2 mb-5">
+    <% if (currUser) { %>
+    <hr />
+    <h4>Leave a Review</h4>
+    <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
+      <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <fieldset class="starability-slot">
+          <% for (let i = 1; i <= 5; i++) { %>
+            <input type="radio" id="rate<%= i %>" name="review[rating]" value="<%= i %>" <%= i === 1 ? "checked" : "" %> />
+            <label for="rate<%= i %>" title="<%= ['Terrible', 'Not good', 'Average', 'Very good', 'Amazing'][i - 1] %>"><%= i %> star</label>
+          <% } %>
+        </fieldset>
+      </div>
+
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comments</label>
+        <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+        <div class="invalid-feedback">Please add comments for the review</div>
+      </div>
+
+      <button class="btn btn-outline-dark">Submit</button>
+    </form>
+    <hr />
+    <% } %>
+
+    <% if (listing.reviews.length > 0) { %>
+    <div class="row">
+      <h5>All Reviews</h5>
+      <% for (review of listing.reviews) { %>
+      <div class="card col-5 ms-3 mb-3">
+        <div class="card-body">
+          <h6 class="card-title">@<%= review.author.username %></h6>
+          <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+          <p class="card-text"><%= review.comment %></p>
+        </div>
+        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+          <button class="btn btn-sm btn-dark mb-2">Delete</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="col-8 offset-2 mb-5">
+    <h4>Where you'll be</h4>
+    <div id="map" style="height: 400px;"></div>
+  </div>
+</div>
+
 <script src="/js/map.js"></script>

@@ -64,12 +64,11 @@ const sessionOptions={
     secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
-    cookie:{
-        express: Date.now() + 7*24*60*60*1000,
-        maxAge:7*24*60*60*1000,
-        httpOnly:true,
-        
-    },
+    cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+},
 };
 
 //app.get("/", (req, res) => {
@@ -123,3 +122,4 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("server listening to port 8080");
 });
+

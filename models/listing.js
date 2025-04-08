@@ -13,6 +13,10 @@ const listingSchema = new schema({
        url: String,
        filename: String,
     },
+    qrCode: {
+    url: String,
+    filename: String
+},
     price: Number,
     location: String,
     country: String,

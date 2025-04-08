@@ -5,10 +5,10 @@
     <form method="POST" action="/listings/<%= listing._id %>?_method=PUT"  novalidate 
         class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">Brand</label>
             <input name="listing[title]" value="<%= listing.title %>" type="text"
             class="form-control" required>
-            <div class="valid-feedback">Title looks good!</div>
+            <div class="valid-feedback">Brand looks good!</div>
         </div>
 
         <div class="mb-3">
@@ -18,12 +18,12 @@
         </div>
 
         <div class="mb-3">
-            Original Listing Image <br>
+            Original Cycle Image <br>
             <img src="<%=originalImageUrl%>"/>
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Upload New Image</label>
+            <label for="image" class="form-label">Upload New Cycle Image</label>
             <input name="listing[image]" 
              type="file"
             class="form-control">
@@ -49,6 +49,12 @@
             <input name="listing[location]" value="<%= listing.location %>" type="text"
             class="form-control" required>
             <div class="invalid-feedback">Location should be valid</div>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload New QR Code</label>
+            <input name="listing[image]" 
+             type="file"
+            class="form-control">
         </div>
         <button class="btn btn-dark edit-btn">Edit</button>
         <br /><br />
