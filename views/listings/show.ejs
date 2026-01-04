@@ -214,6 +214,22 @@
   </div>
   <% } %>
 
+  <div class="col-8 offset-2 mb-4">
+    <% if (listing.sold) { %>
+      <div class="alert alert-warning">This listing is SOLD</div>
+    <% } else if (currUser && !listing.owner._id.equals(currUser._id)) { %>
+      <div class="d-flex gap-2">
+        <!-- <form method="POST" action="/listings/<%= listing._id %>/buy-demo">
+           -->
+
+        <form method="POST" action="/payments/create-checkout-session">
+          <input type="hidden" name="listingId" value="<%= listing._id %>" />
+          <button class="btn btn-primary">Buy Now</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+
   <div class="col-8 offset-2 mb-5">
     <% if (currUser) { %>
     <hr />

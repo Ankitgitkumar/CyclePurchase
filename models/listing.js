@@ -30,10 +30,18 @@ const listingSchema = new schema({
        type: schema.Types.ObjectId,
         ref:"user",
     },
+    sold: {
+        type: Boolean,
+        default: false
+    },
+    buyer: {
+        type: schema.Types.ObjectId,
+        ref: "user",
+    },
     geometry:{
         type: {
-          type: String, // Don't do `{ location: { type: String } }`
-          enum: ['Point'], // 'location.type' must be 'Point'
+          type: String, 
+          enum: ['Point'], 
           required: true
         },
         coordinates: {
